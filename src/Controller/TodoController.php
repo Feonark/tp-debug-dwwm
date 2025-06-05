@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use DateTimeImmutable;
 
 final class TodoController extends AbstractController
 {
@@ -34,6 +35,7 @@ final class TodoController extends AbstractController
         $form = $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $todo->setCreator($this->getUser());
             $this->em->persist($todo);
             $this->em->flush();
@@ -99,6 +101,6 @@ final class TodoController extends AbstractController
             $this->addFlash('danger', 'Cette tâche ne vous appartient pas');
         }
 
-        return $this->redirectToRoute('todos');
+        return $this->redirectToRoute('todos_index');
     }
 }
