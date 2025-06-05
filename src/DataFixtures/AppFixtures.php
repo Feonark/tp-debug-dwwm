@@ -10,12 +10,12 @@ use App\Entity\User;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use SebastianBergmann\CodeCoverage\Report\PHP;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasher;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture
 {
     public function __construct(
-        private UserPasswordHasher $hasher
+        private UserPasswordHasherInterface $hasher
     )
     {
         
