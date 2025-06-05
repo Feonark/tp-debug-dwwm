@@ -79,7 +79,7 @@ class AppFixtures extends Fixture
         $admin
             ->setEmail('admin@admin.com')
             ->setUsername('admin')
-            ->setPassword($this->hasher->hashPassword($user, 'admin123'))
+            ->setPassword($this->hasher->hashPassword($admin, 'admin123'))
             ->setRoles(['ROLE_ADMIN'])
             ->setIsMajor(true)
             ->setIsTerms(true)
