@@ -17,6 +17,7 @@ class Todo
     #[ORM\Column]
     private ?int $id = null;
 
+    #[ORM\Column]
     private ?\DateTimeImmutable $created_at = null;
 
     #[ORM\Column]
@@ -29,18 +30,18 @@ class Todo
 
     #[ORM\Column(length: 255)]
     private ?string $ref = null;
-    
+
     #[Assert\NotBlank(message: 'Le champ catégorie est obligatoire')]
     #[Assert\Choice(
         choices: [
             'divers',
-            'courses', 
-            'administratif', 
-            'factures', 
-            'sorties', 
-            'anniversaire', 
-            'urgent', 
-            'ménage', 
+            'courses',
+            'administratif',
+            'factures',
+            'sorties',
+            'anniversaire',
+            'urgent',
+            'ménage',
             'demenagement',
             'business',
             'travail',
@@ -49,7 +50,7 @@ class Todo
             'sante',
             'rdv',
             'culture'
-            ]
+        ]
     )]
     #[ORM\Column(length: 80)]
     private ?string $category = null;
