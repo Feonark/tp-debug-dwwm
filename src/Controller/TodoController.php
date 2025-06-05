@@ -50,7 +50,7 @@ final class TodoController extends AbstractController
     }
 
     #[Route('/todos/edit/{ref}', name: 'todos_edit', methods: ['GET', 'POST'])]
-    public function edit(string $ref): Response
+    public function edit(string $ref, Request $request): Response
     {
         $todo = $this->tr->findOneByRef($ref);
 
