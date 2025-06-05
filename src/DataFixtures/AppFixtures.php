@@ -148,6 +148,6 @@ class AppFixtures extends Fixture
             echo $todo->getName()."\n" . PHP_EOL;
         }
 
-        // $manager->flush();
+        $manager->flush();
     }
 }
