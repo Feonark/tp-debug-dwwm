@@ -9,30 +9,27 @@ use App\Entity\Todo;
 use App\Entity\User;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
-use SebastianBergmann\CodeCoverage\Report\PHP;
+// use SebastianBergmann\CodeCoverage\Report\PHP;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture
 {
     public function __construct(
         private UserPasswordHasherInterface $hasher
-    )
-    {
-        
-    }
+    ) {}
     public function load(ObjectManager $manager): void
     {
         $faker = Factory::create('fr_FR');
 
         $categories = [
             'divers',
-            'courses', 
-            'administratif', 
-            'factures', 
-            'sorties', 
-            'anniversaire', 
-            'urgent', 
-            'ménage', 
+            'courses',
+            'administratif',
+            'factures',
+            'sorties',
+            'anniversaire',
+            'urgent',
+            'ménage',
             'déménagement',
             'business',
             'travail',
@@ -91,7 +88,7 @@ class AppFixtures extends Fixture
 
         // Utilisateurs
         $users = [];
-        for ($i=0; $i < 25; $i++) { 
+        for ($i = 0; $i < 25; $i++) {
             $username = $faker->username;
             $user = new User();
             $user
@@ -105,22 +102,23 @@ class AppFixtures extends Fixture
             ;
 
             $manager->persist($user);
+
             array_push($users, $user);
 
             // Création des réseaux de l'utilisateur (doublon possible mais pas bloquant)
-            for ($n=0; $n < 3; $n++) { 
+            for ($n = 0; $n < 3; $n++) {
                 $selectedNetwork = $faker->randomElement($networks);
                 $net = new Network();
                 $net
                     ->setUrl($selectedNetwork['lien'] . '/' . $username)
                     ->setUser($user)
                     ->setType($selectedNetwork['type'])
-                    ;
+                ;
 
                 $manager->persist($net);
             }
 
-            echo $user->getUsername()."\n" . PHP_EOL;
+            echo $user->getUsername() . "\n" . PHP_EOL;
         }
 
         // Création des Todos avec 5 Tasks
@@ -140,12 +138,11 @@ class AppFixtures extends Fixture
                 $manager->persist($task);
 
                 echo "task - " . $j . PHP_EOL;
-
             }
 
             $manager->persist($todo);
 
-            echo $todo->getName()."\n" . PHP_EOL;
+            echo $todo->getName() . "\n" . PHP_EOL;
         }
 
         $manager->flush();
