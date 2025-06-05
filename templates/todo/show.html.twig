@@ -47,7 +47,7 @@
 
 	{% if todo.creator == app.user %}
 		<div class="flex gap-4 justify-center text-sm text-emerald-700">
-			<a href={{ path('todos_edit', { ref: todo.ref }) }} class="flex gap-1 items-center hover:text-emerald-900 hover:-translate-y-1 transform transition-all ease-in-out duration-300">
+			<a href={{ path('todos_edit', { ref: todo.ref } ) }} class="flex gap-1 items-center hover:text-emerald-900 hover:-translate-y-1 transform transition-all ease-in-out duration-300">
 				{{ ux_icon('mdi:pencil-box-outline', { class: 'h-4 w-4'}) }}
 				Modifier
 			</a>
@@ -60,4 +60,4 @@
 			</form>
 		</div>
 	{% endif %}
-
+{% endblock %}
